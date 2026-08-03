@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Blue Nile — Royal Menu</title>
+<meta name="description" content="Blue Nile Restaurant Pune — Irani, Tandoori, Biryani & more. Since 1970.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --c:  #F3E8DC;
+  --c2: #E5D3C0;
+  --c3: #FAF3EB;
+  --g1: #0A4E48;
+  --g2: #106C64;
+  --g3: #1A9E94;
+  --g4: #40E0D0;
+  --g5: #6EEBE0;
+  --g6: #A9F5EE;
+  --g7: #D6FBF7;
+  --g8: #F0FCFB;
+  --ink:#0A2624;
+  --ink2:#1D4A47;
+  --ink3:#4D7D7A;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Outfit',system-ui,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--c);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+
+/* ─────────────────────────────────
+   SCROLLBAR
+───────────────────────────────── */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--g8)}
+::-webkit-scrollbar-thumb{background:var(--g4);border-radius:3px}
+
+/* ─────────────────────────────────
+   COMPACT ELEGANT HEADER (Easy Menu Finding)
+───────────────────────────────── */
+.header-compact{
+  position:relative;
+  background: linear-gradient(135deg, #2BCDC4 0%, #40E0D0 50%, #5EEAE2 100%);
+  padding:24px 20px 20px;
+  color:#0A4E48;
+  text-align:center;
+  border-bottom:3px solid rgba(10,78,72,0.25);
+  box-shadow:0 6px 28px rgba(64,224,208,0.45);
+}
+.header-aura{
+  position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 80% 90% at 50% 0%, rgba(255,255,255,.18) 0%, transparent 70%);
+}
+
+.header-top-row{
+  display:flex;align-items:center;justify-content:space-between;
+  max-width:1200px;margin:0 auto 12px;
+  position:relative;z-index:2;
+}
+.brand-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(10,78,72,.15);
+  border:1px solid rgba(10,78,72,.3);
+  padding:4px 12px;border-radius:20px;
+  font-size:.68rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;
+  color:#0A4E48;
+}
+.brand-badge-dot{width:6px;height:6px;border-radius:50%;background:#0A4E48}
+
+.header-logo-wrap{
+  display:flex;align-items:center;justify-content:center;
+  margin:14px auto 8px;
+  position:relative;z-index:2;
+}
+.header-logo-img{
+  height:clamp(110px, 22vw, 185px);
+  width:auto;
+  max-width:94%;
+  object-fit:contain;
+  filter:drop-shadow(0 4px 16px rgba(10,78,72,0.35));
+  transition:transform 0.3s var(--ease);
+}
+.header-logo-img:hover{
+  transform:scale(1.03);
+}
+
+.header-sub{
+  font-family:var(--serif);
+  font-size:0.95rem;font-style:italic;
+  color:rgba(10,78,72,.75);
+  margin-top:4px;
+  position:relative;z-index:2;
+}
+
+/* Quick Category Pill Bar for Rapid Jump */
+.nav-pills-container{
+  max-width:1200px;margin:16px auto 0;
+  display:flex;gap:8px;
+  overflow-x:auto;
+  padding:4px 2px 8px;
+  position:relative;z-index:2;
+  scrollbar-width:none;
+}
+.nav-pills-container::-webkit-scrollbar{display:none}
+.pill-btn{
+  white-space:nowrap;
+  background:rgba(10,78,72,0.12);
+  border:1px solid rgba(10,78,72,0.25);
+  color:#0A4E48;
+  padding:6px 14px;border-radius:20px;
+  font-size:0.75rem;font-weight:500;
+  cursor:pointer;
+  transition:all 0.25s var(--ease);
+  display:flex;align-items:center;gap:6px;
+}
+.pill-btn:hover, .pill-btn.active{
+  background:#0A4E48;
+  color:#40E0D0;
+  border-color:#0A4E48;
+  font-weight:600;
+}
+
+/* ─────────────────────────────────
+   MAIN CONTENT & BENTO GRID
+───────────────────────────────── */
+.menu-wrap{
+  max-width:1240px;margin:0 auto;
+  padding:32px 18px 80px;
+}
+
+.section-head-mini{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:20px;
+}
+.section-title-mini{
+  font-family:var(--serif);
+  font-size:1.6rem;font-weight:700;
+  color:var(--g1);
+  display:flex;align-items:center;gap:8px;
+}
+.section-title-mini::before{
+  content:'';display:block;width:12px;height:12px;
+  border-radius:3px;background:var(--g3);
+}
+.quick-hint{
+  font-size:0.75rem;color:var(--ink3);font-style:italic;
+}
+
+/* Bento Grid */
+.bento{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-auto-rows:minmax(140px,auto);
+  gap:16px;
+}
+
+/* Cards */
+.card{
+  position:relative;
+  background:var(--c3);
+  border:1px solid rgba(64,224,208,.2);
+  border-radius:20px;
+  padding:20px 18px;
+  cursor:pointer;
+  overflow:hidden;
+  transition:all .4s var(--ease);
+  box-shadow:0 3px 12px rgba(10,78,72,.04);
+  display:flex;flex-direction:column;
+  justify-content:space-between;
+}
+.card:hover{
+  transform:translateY(-5px);
+  border-color:var(--g4);
+  box-shadow:0 16px 36px rgba(10,78,72,.12), 0 0 0 1px var(--g5);
+}
+.card:active{transform:scale(.98)}
+
+.card-num{
+  position:absolute;top:12px;right:14px;
+  font-family:var(--serif);
+  font-size:2.8rem;font-weight:700;line-height:1;
+  color:rgba(64,224,208,.12);
+  pointer-events:none;
+}
+.card-ico{
+  width:40px;height:40px;
+  background:linear-gradient(135deg, #2BCDC4 0%, #40E0D0 50%, #5EEAE2 100%);
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  color:#0A4E48;
+  margin-bottom:12px;
+  box-shadow:0 4px 12px rgba(64,224,208,.35);
+}
+.card-ico svg{width:20px;height:20px}
+
+.card-name{
+  font-family:var(--serif);
+  font-size:1.15rem;font-weight:700;
+  color:var(--g1);line-height:1.2;
+  margin-bottom:4px;
+}
+.card-desc{
+  font-size:.73rem;color:var(--ink3);
+  margin-bottom:10px;font-weight:400;
+}
+.card-foot{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:10px;
+  border-top:1px dashed rgba(64,224,208,.18);
+}
+.card-count{
+  font-size:.68rem;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:var(--g3);
+}
+.card-btn{
+  width:26px;height:26px;
+  background:linear-gradient(135deg, #2BCDC4 0%, #40E0D0 50%, #5EEAE2 100%);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:#0A4E48;
+  transition:all .3s var(--ease);
+  box-shadow:0 2px 6px rgba(64,224,208,.4);
+}
+.card-btn svg{width:12px;height:12px;stroke-width:2.5}
+.card:hover .card-btn{background:#0A4E48;color:#40E0D0;box-shadow:0 4px 10px rgba(10,78,72,.3);}
+
+/* Featured Biryani Card - Vibrant Turquoise */
+.card-feat{
+  grid-column:span 2;
+  background:linear-gradient(135deg, #2BCDC4 0%, #40E0D0 50%, #5EEAE2 100%);
+  border:1.5px solid rgba(10,78,72,0.25);
+  color:#0A4E48;
+  box-shadow:0 8px 24px rgba(64,224,208,.35);
+}
+.card-feat .card-num{color:rgba(10,78,72,.2)}
+.card-feat .card-ico{
+  background:rgba(10,78,72,.15);
+  border:1px solid rgba(10,78,72,.25);
+  color:#0A4E48;
+}
+.card-feat .card-name{color:#0A3530;font-size:1.25rem;text-shadow:none}
+.card-feat .card-desc{color:rgba(10,78,72,.75)}
+.card-feat .card-count{color:#0A4E48;letter-spacing:.1em;font-weight:700}
+.card-feat .card-btn{background:#0A4E48;color:#40E0D0;box-shadow:0 2px 8px rgba(10,78,72,0.3)}
+.card-feat:hover{
+  border-color:rgba(10,78,72,.35);
+  box-shadow:0 16px 36px rgba(64,224,208,.45), 0 0 0 1px rgba(10,78,72,.2);
+}
+.card-feat:hover .card-btn{background:#0A3530;color:#40E0D0;transform:scale(1.1)}
+
+/* ─────────────────────────────────
+   MODAL 1: CATEGORY ITEMS LIST
+───────────────────────────────── */
+.overlay{
+  position:fixed;inset:0;z-index:1000;
+  background:rgba(6,32,30,.65);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
+  opacity:0;visibility:hidden;
+  transition:opacity .3s,visibility .3s;
+}
+.overlay.on{opacity:1;visibility:visible}
+
+.panel{
+  background:var(--c3);
+  border:1px solid rgba(64,224,208,.25);
+  border-radius:24px;
+  width:100%;max-width:960px;max-height:88vh;
+  overflow:hidden;
+  display:flex;flex-direction:column;
+  position:relative;
+  box-shadow:0 30px 90px rgba(6,32,30,.3);
+  transform:scale(.96) translateY(18px);
+  transition:transform .35s var(--ease);
+}
+.overlay.on .panel{transform:scale(1) translateY(0)}
+
+.panel::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--g4),var(--g5),var(--g4),transparent);
+}
+
+.p-head{
+  padding:20px 24px 16px;
+  border-bottom:1px solid rgba(64,224,208,.15);
+  display:flex;align-items:center;gap:14px;
+  background:linear-gradient(to bottom,var(--g8),var(--c3));
+}
+.p-ico{
+  width:42px;height:42px;
+  background:linear-gradient(135deg,var(--g1),var(--g2));
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--g5);flex-shrink:0;
+}
+.p-ico svg{width:22px;height:22px}
+.p-texts{flex:1}
+.p-title{font-family:var(--serif);font-size:1.55rem;font-weight:700;color:var(--g1);line-height:1.1}
+.p-sub{font-size:.68rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--g3);margin-top:2px}
+.p-close{
+  width:36px;height:36px;
+  background:var(--g8);border:1px solid rgba(64,224,208,.2);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  color:var(--g1);cursor:pointer;flex-shrink:0;
+  transition:all .25s;
+}
+.p-close:hover{background:var(--g1);color:var(--g6);transform:rotate(90deg)}
+
+.p-body{padding:20px 24px;overflow-y:auto;flex:1}
+
+.items-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;
+}
+.irow{
+  display:flex;align-items:center;
+  padding:12px 14px;border-radius:12px;gap:10px;
+  background:rgba(255,255,255,0.6);
+  border:1px solid rgba(64,224,208,0.12);
+  transition:all .2s;cursor:pointer;
+}
+.irow:hover{
+  background:var(--g8);
+  border-color:var(--g4);
+  transform:translateX(3px);
+}
+
+.vdot,.ndot{
+  width:12px;height:12px;
+  border-radius:3px;border:1.5px solid;
+  flex-shrink:0;position:relative;
+}
+.vdot{border-color:#2a7a2a}
+.vdot::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:5px;height:5px;border-radius:50%;background:#2a7a2a}
+.ndot{border-color:#8b1a1a}
+.ndot::after{content:'';position:absolute;bottom:1.5px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:3px solid transparent;border-right:3px solid transparent;border-bottom:4.5px solid #8b1a1a}
+
+.iname{
+  font-family:var(--serif);
+  font-size:1.05rem;font-weight:600;
+  color:var(--ink);flex:1;min-width:0;line-height:1.25;
+}
+.ivariant{display:block;font-size:.72rem;color:var(--ink3);font-style:italic;font-family:var(--sans);font-weight:400}
+.iprice{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--g1);white-space:nowrap;flex-shrink:0}
+.click-hint-icon{color:var(--g4);font-size:0.8rem;margin-left:4px;opacity:0.6}
+
+/* ─────────────────────────────────
+   MODAL 2: DISH DETAIL POPUP (WITH PHOTO SPACE)
+───────────────────────────────── */
+.dish-overlay{
+  position:fixed;inset:0;z-index:1100;
+  background:rgba(6,32,30,.75);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
+  opacity:0;visibility:hidden;
+  transition:opacity .3s,visibility .3s;
+}
+.dish-overlay.on{opacity:1;visibility:visible}
+
+.dish-card{
+  background:var(--c3);
+  border:1.5px solid var(--g4);
+  border-radius:24px;
+  width:100%;max-width:480px;
+  overflow:hidden;
+  box-shadow:0 30px 90px rgba(6,32,30,.4);
+  transform:scale(.9) translateY(20px);
+  transition:transform .35s var(--ease);
+  position:relative;
+}
+.dish-overlay.on .dish-card{transform:scale(1) translateY(0)}
+
+/* PHOTO PLACEHOLDER CONTAINER */
+.dish-photo-placeholder{
+  width:100%;height:220px;
+  background:linear-gradient(135deg, var(--g8) 0%, var(--c2) 100%);
+  border-bottom:2px dashed rgba(64,224,208,0.3);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:10px;
+  color:var(--g3);
+  position:relative;
+}
+.dish-photo-placeholder svg{
+  width:48px;height:48px;opacity:0.6;
+}
+.dish-photo-tag{
+  font-size:0.75rem;font-weight:600;
+  letter-spacing:0.12em;text-transform:uppercase;
+  background:rgba(64,224,208,0.15);
+  border:1px solid rgba(64,224,208,0.3);
+  padding:4px 14px;border-radius:20px;
+  color:var(--g1);
+}
+
+.dish-close-btn{
+  position:absolute;top:14px;right:14px;z-index:10;
+  width:36px;height:36px;
+  background:rgba(243,232,220,0.95);
+  border:1px solid rgba(64,224,208,0.3);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--g1);cursor:pointer;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  transition:all 0.2s;
+}
+.dish-close-btn:hover{background:var(--g1);color:var(--c)}
+
+.dish-content{
+  padding:24px 24px 28px;
+}
+.dish-header-row{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  gap:12px;margin-bottom:12px;
+}
+.dish-title{
+  font-family:var(--serif);
+  font-size:1.6rem;font-weight:700;
+  color:var(--g1);line-height:1.2;
+}
+.dish-badge-row{
+  display:flex;align-items:center;gap:8px;margin-bottom:16px;
+}
+.dish-type-badge{
+  font-size:0.7rem;font-weight:600;
+  padding:3px 10px;border-radius:12px;
+  display:inline-flex;align-items:center;gap:4px;
+}
+.dish-type-badge.v{background:#eaf5ea;color:#2a7a2a;border:1px solid #bce2bc}
+.dish-type-badge.nv{background:#fdeaea;color:#8b1a1a;border:1px solid #f5c2c2}
+
+.dish-desc{
+  font-size:0.88rem;color:var(--ink2);
+  line-height:1.55;margin-bottom:20px;
+  font-style:italic;
+  background:var(--g8);padding:12px 16px;border-radius:12px;
+  border-left:3px solid var(--g3);
+}
+
+.dish-price-box{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:16px;
+  border-top:1px solid rgba(37,180,172,0.2);
+}
+.dish-price-val{
+  font-family:var(--serif);
+  font-size:1.8rem;font-weight:700;
+  color:var(--g1);
+}
+.dish-order-note{
+  font-size:0.75rem;font-weight:600;
+  color:var(--g3);background:var(--g7);
+  padding:6px 14px;border-radius:20px;
+}
+
+/* ─────────────────────────────────
+   RESPONSIVE
+───────────────────────────────── */
+@media(max-width:1024px){
+  .bento{grid-template-columns:repeat(3,1fr)}
+  .card-feat{grid-column:span 2}
+}
+@media(max-width:768px){
+  .bento{grid-template-columns:repeat(2,1fr);gap:12px}
+  .card-feat{grid-column:span 2}
+  .card{padding:16px 14px}
+  .items-grid{grid-template-columns:1fr;gap:8px}
+  .overlay, .dish-overlay{align-items:flex-end;padding:0}
+  .panel{border-radius:24px 24px 0 0;max-height:85vh;transform:translateY(100%)}
+  .dish-card{border-radius:24px 24px 0 0;max-width:100%;transform:translateY(100%)}
+  .overlay.on .panel, .dish-overlay.on .dish-card{transform:translateY(0)}
+  .header-compact{padding:18px 16px 14px}
+}
+@media(max-width:420px){
+  .bento{grid-template-columns:1fr}
+  .card-feat{grid-column:span 1}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     COMPACT ELEGANT HEADER (NO HEAVY SCROLLING)
+══════════════════════════════════ -->
+<header class="header-compact">
+  <div class="header-aura"></div>
+  
+  <div class="header-top-row">
+    <div class="brand-badge">
+      <span class="brand-badge-dot"></span>
+      <span>Est. 1970 · Pune</span>
+    </div>
+    <div class="brand-badge">
+      <span>12 Categories</span>
+    </div>
+  </div>
+
+  <div class="header-logo-wrap">
+    <img src="logo_final.png" alt="Blue Nile Restaurant" class="header-logo-img" id="headerLogoImg">
+  </div>
+  <p class="header-sub">Authentic Irani · Tandoori & Kebabs · Biryani</p>
+
+  <!-- Horizontal Scroll Category Bar for Instant Finding -->
+  <div class="nav-pills-container" id="pillNav"></div>
+</header>
+
+<!-- ══════════════════════════════════
+     MAIN MENU SECTION
+══════════════════════════════════ -->
+<main class="menu-wrap">
+  <div class="section-head-mini">
+    <h2 class="section-title-mini">Menu Categories</h2>
+    <span class="quick-hint">Tap category to explore · Tap dish for details</span>
+  </div>
+  <div class="bento" id="bento"></div>
+</main>
+
+<!-- ══════════════════════════════════
+     MODAL 1: CATEGORY ITEMS POPUP
+══════════════════════════════════ -->
+<div class="overlay" id="overlay">
+  <div class="panel">
+    <div class="p-head">
+      <div class="p-ico" id="pIco"></div>
+      <div class="p-texts">
+        <div class="p-title" id="pTitle">Category</div>
+        <div class="p-sub" id="pSub">Fine Dining Selection</div>
+      </div>
+      <button class="p-close" id="pClose" aria-label="Close">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="p-body" id="pBody"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     MODAL 2: DISH DETAIL POPUP (WITH PHOTO SPACE)
+══════════════════════════════════ -->
+<div class="dish-overlay" id="dishOverlay">
+  <div class="dish-card">
+    <button class="dish-close-btn" id="dishCloseBtn" aria-label="Close Dish Popup">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+
+    <!-- PHOTO PLACEHOLDER SPACE -->
+    <div class="dish-photo-placeholder" id="dishPhotoArea">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+      </svg>
+      <span class="dish-photo-tag">Photo Placeholder</span>
+    </div>
+
+    <div class="dish-content">
+      <div class="dish-header-row">
+        <h3 class="dish-title" id="dTitle">Dish Name</h3>
+      </div>
+
+      <div class="dish-badge-row">
+        <span class="dish-type-badge nv" id="dDietBadge">
+          <span class="ndot"></span> Non-Veg
+        </span>
+        <span class="dish-order-note" id="dPortionBadge">Full Portion</span>
+      </div>
+
+      <p class="dish-desc" id="dDesc">
+        Authentic specialty prepared with traditional spices, slow-cooked to perfection in Blue Nile's heritage kitchen.
+      </p>
+
+      <div class="dish-price-box">
+        <div>
+          <span style="font-size:0.75rem;color:var(--ink3);display:block;">Price</span>
+          <span class="dish-price-val" id="dPrice">₹0</span>
+        </div>
+        <span class="dish-order-note">Available for Dine-in</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HIDDEN SVG ICONS -->
+<svg style="display:none">
+  <symbol id="i-biryani" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="12" cy="18" rx="9" ry="3.5"/><path d="M3 18C3 14 21 14 21 18"/><path d="M6 14C6 11 18 11 18 14"/><path d="M9 11C9.5 8 14.5 8 15 11"/>
+  </symbol>
+  <symbol id="i-irani" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="12" cy="19" rx="9" ry="3"/><path d="M4 16C4 12 20 12 20 16"/><line x1="4" y1="13" x2="20" y2="7"/>
+  </symbol>
+  <symbol id="i-tandoori" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 22C8 24 16 24 16 22C16 16 14 8 13 6L11 6C10 8 8 16 8 22Z"/><ellipse cx="12" cy="6" rx="2.5" ry="1"/>
+  </symbol>
+  <symbol id="i-chicken" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 18C5 22 19 22 19 18C19 15 5 15 5 18Z"/><path d="M10 15L7 9C6 7 9 5 10 7L12.5 13"/>
+  </symbol>
+  <symbol id="i-roti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="12" cy="19" rx="9" ry="3.5"/><ellipse cx="11" cy="15" rx="8.5" ry="3.5"/><line x1="9" y1="13" x2="9" y2="19"/>
+  </symbol>
+  <symbol id="i-veg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 19C5 23 19 23 19 19L5 19Z"/><path d="M7 17C6 12 9 9 11 12"/>
+  </symbol>
+  <symbol id="i-vegstar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 20C3 17 21 17 21 20L18 23L6 23Z"/><line x1="8" y1="20" x2="8" y2="9"/><line x1="16" y1="20" x2="16" y2="9"/>
+  </symbol>
+  <symbol id="i-vcn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 13C4 20 20 20 20 13Z"/><line x1="3" y1="13" x2="21" y2="13"/>
+  </symbol>
+  <symbol id="i-nvstar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="12" cy="19" rx="10" ry="4"/><circle cx="17.5" cy="17" r="2.5"/>
+  </symbol>
+  <symbol id="i-nvnd" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 13C4 20 20 20 20 13Z"/><line x1="3" y1="13" x2="21" y2="13"/>
+  </symbol>
+  <symbol id="i-nvrice" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 15C4 21 20 21 20 15"/><circle cx="12" cy="8" r=".8" fill="currentColor"/>
+  </symbol>
+  <symbol id="i-more" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 2C13.2 4.5 14.5 6 16 8.5C18 6.5 22 8 22 11.5C22 14.5 18.5 16 16 14.5"/>
+  </symbol>
+</svg>
+
+<script>
+/* ═══════════════════════════════
+   MENU DATA
+═══════════════════════════════ */
+const D=[
+  {id:"biryani",name:"Signature Biryani",sub:"Make to Order · Royal Feast",ico:"i-biryani",count:"Made to Order",feat:true,kind:"hero",
+   item:{name:"Mutton Raan Biryani (with Potatoes) 1 Kg",note:"Serves 6–8 Guests",price:"₹4,400",d:"nv",
+         desc:"Signature 1 Kg Mutton Raan Biryani served with potatoes, special gravy (750ml), raita (750ml), tandoori salad, lemon, chutney & 4 cold drinks.",
+         tags:["Gravy 750ml","Raita 750ml","Tandoori Salad","4 Cold Drinks"]}},
+
+  {id:"irani",name:"Irani Specials",sub:"Traditional Persian Kebabs",ico:"i-irani",count:"2 Items",
+   rows:[
+     {n:"Irani Mutton Koobideh Kebab",v:"4 pcs",p:"₹600",d:"nv",desc:"Minced mutton marinated with saffron, onion & traditional Persian spices, flame-grilled on flat skewers."},
+     {n:"Irani Mutton Koobideh Kebab with Rice",v:"3 pcs",p:"₹655",d:"nv",desc:"Persian Mutton Koobideh kebabs served alongside fragrant buttered saffron rice."}
+   ]},
+
+  {id:"tandoori",name:"Tandoori & Kebabs",sub:"Clay Oven Delicacies",ico:"i-tandoori",count:"15 Items",
+   rows:[
+     {n:"Tandoori Fish",v:"Full Pomfret",p:"₹610",d:"nv",desc:"Fresh Pomfret marinated in Indian spices and roasted in red-hot clay oven."},
+     {n:"Tandoori Chicken",v:"Full · 4 pcs",p:"₹605",d:"nv",desc:"Classic spiced whole chicken roasted in clay tandoor."},
+     {n:"Rotisserie Chicken",v:"Full · 4 pcs",p:"₹605",d:"nv",desc:"Slow-roasted juicy rotisserie chicken with signature rub."},
+     {n:"Mutton Seekh Kebab",v:"4 pcs",p:"₹585",d:"nv",desc:"Spiced minced mutton skewered and charred over open coals."},
+     {n:"Chicken Malai Tikka",v:"8 pcs",p:"₹505",d:"nv",desc:"Tender chicken chunks marinated in cream, cheese & subtle cardamom."},
+     {n:"Chicken Pahadi Kebab",v:"8 pcs",p:"₹505",d:"nv",desc:"Chicken marinated in fresh mint, coriander & green chilli paste."},
+     {n:"Chicken Tikka",v:"8 pcs",p:"₹500",d:"nv",desc:"Classic red tikka marinated in spiced yoghurt and grilled."},
+     {n:"Reshmi Kebab",v:"8 pcs",p:"₹500",d:"nv",desc:"Silky soft chicken kebabs with cashew paste and egg white glaze."},
+     {n:"Special Tangdi Kebab",v:"2 pcs",p:"₹495",d:"nv",desc:"Stuffed chicken drumsticks roasted in tandoori spices."},
+     {n:"Chicken Seekh Kebab",v:"4 pcs",p:"₹500",d:"nv",desc:"Minced chicken kebabs seasoned with fresh herbs."},
+     {n:"Chicken Wings",v:"8 pcs",p:"₹455",d:"nv",desc:"Crispy tandoori style chicken wings."},
+     {n:"Paneer Pahadi Tikka",v:"6 pcs",p:"₹450",d:"v",desc:"Cottage cheese marinated in fresh herb marinade and grilled."},
+     {n:"Paneer Tikka",v:"6 pcs",p:"₹450",d:"v",desc:"Paneer cubes marinated in spiced yoghurt and tandoori mix."},
+     {n:"Rotisserie Chicken",v:"Half",p:"₹440",d:"nv",desc:"Half rotisserie chicken roasted to golden perfection."},
+     {n:"Tandoori Chicken",v:"Half",p:"₹440",d:"nv",desc:"Half tandoori chicken grilled in clay oven."}
+   ]},
+
+  {id:"chicken",name:"Chicken Curry",sub:"Rich Gravies & Curries",ico:"i-chicken",count:"9 Items",
+   rows:[
+     {n:"Blue Nile Chicken",p:"₹560",d:"nv",desc:"Our house-special rich gravy chicken prepared with secret royal spices."},
+     {n:"Chicken Chilly Fry",p:"₹555",d:"nv",desc:"Spicy sauteed chicken chunks with onions, green chillies & pepper."},
+     {n:"Chicken Tikka Masala",p:"₹555",d:"nv",desc:"Roasted chicken tikka simmered in rich tomato gravy."},
+     {n:"Butter Chicken Boneless",p:"₹555",d:"nv",desc:"Tender boneless chicken in buttery velvet tomato gravy."},
+     {n:"Chicken Masala",p:"₹555",d:"nv",desc:"Thick onion-tomato spiced gravy chicken."},
+     {n:"Chicken Saagwala",p:"₹555",d:"nv",desc:"Chicken cooked in fresh spinach puree and spices."},
+     {n:"Chicken Kolhapuri",p:"₹555",d:"nv",desc:"Fiery Kolhapuri spiced chicken curry."},
+     {n:"Chicken Kheema",p:"₹465",d:"nv",desc:"Minced chicken cooked with peas and aromatic spices."},
+     {n:"Gravy",p:"₹215",d:"nv",desc:"Side bowl of signature rich curry gravy."}
+   ]},
+
+  {id:"roti",name:"Roti & Breads",sub:"Fresh Tandoori Breads",ico:"i-roti",count:"11 Items",
+   rows:[
+     {n:"Garlic Cheese Naan",p:"₹166",d:"v",desc:"Stuffed cheese naan brushed with garlic butter."},
+     {n:"Garlic Naan",p:"₹149",d:"v",desc:"Fluffy naan topped with minced garlic and butter."},
+     {n:"Butter Naan",p:"₹104",d:"v",desc:"Soft clay-oven baked bread glazed with butter."},
+     {n:"Kerala Butter Paratha",p:"₹104",d:"v",desc:"Flaky layered South Indian paratha with butter."},
+     {n:"Kerala Wheat Butter Paratha",p:"₹104",d:"v",desc:"Whole wheat flaky layered paratha."},
+     {n:"Kerala Paratha",p:"₹95",d:"v",desc:"Classic layered Malabar style paratha."},
+     {n:"Kerala Wheat Paratha",p:"₹95",d:"v",desc:"Whole wheat Malabar paratha."},
+     {n:"Butter Roti",p:"₹95",d:"v",desc:"Tandoori wheat roti with butter."},
+     {n:"Naan",p:"₹95",d:"v",desc:"Plain clay oven white flour bread."},
+     {n:"Tandoori Roti",p:"₹88",d:"v",desc:"Plain whole wheat tandoori roti."},
+     {n:"Bread Slice",v:"2 pcs",p:"₹22",d:"v",desc:"Toasted bread slices."}
+   ]},
+
+  {id:"veg",name:"Veg Mains",sub:"Vegetarian Specialties",ico:"i-veg",count:"16 Items",
+   rows:[
+     {n:"Paneer Tikka Masala",p:"₹460",d:"v",desc:"Grilled paneer tikka in thick tomato onion gravy."},
+     {n:"Vegetable Makhani",p:"₹410",d:"v",desc:"Mixed vegetables in rich buttery gravy."},
+     {n:"Paneer Makhanwala",p:"₹410",d:"v",desc:"Paneer cubes in creamy sweet-spiced tomato gravy."},
+     {n:"Vegetable Kolhapuri",p:"₹410",d:"v",desc:"Spicy mixed veg in Kolhapuri chilli paste."},
+     {n:"Palak Paneer",p:"₹410",d:"v",desc:"Cottage cheese cubes in smooth spinach gravy."},
+     {n:"Aaloo Palak",p:"₹410",d:"v",desc:"Potatoes cooked with spinach puree."},
+     {n:"Plain Palak",p:"₹410",d:"v",desc:"Seasoned spinach curry."},
+     {n:"Aaloo Mutter / Mutter Masala",p:"₹410",d:"v",desc:"Potatoes & green peas gravy."},
+     {n:"Mutter Paneer Masala",p:"₹410",d:"v",desc:"Green peas and paneer in spiced gravy."},
+     {n:"Mixed Veg Curry",p:"₹410",d:"v",desc:"Assorted garden vegetables in curry sauce."},
+     {n:"Mushroom Masala",p:"₹410",d:"v",desc:"Fresh mushrooms cooked in spiced gravy."},
+     {n:"Chana Masala",p:"₹405",d:"v",desc:"Traditional chickpea masala."},
+     {n:"Paneer Bhurji",p:"₹385",d:"v",desc:"Scrambled paneer with onions & spices."},
+     {n:"Dal Butter Fry",p:"₹365",d:"v",desc:"Tempered yellow dal finished with butter."},
+     {n:"Dal Fry",p:"₹360",d:"v",desc:"Yellow lentils tempered with garlic & cumin."},
+     {n:"French Fries",p:"₹330",d:"v",desc:"Golden salted potato fries."}
+   ]},
+
+  {id:"vegstar",name:"Veg Starters",sub:"Crispy Starters",ico:"i-vegstar",count:"9 Items",
+   rows:[
+     {n:"Paneer Butter Garlic",p:"₹405",d:"v",desc:"Paneer tossed in rich garlic butter sauce."},
+     {n:"Mushroom Butter Garlic",p:"₹405",d:"v",desc:"Button mushrooms sauteed in garlic butter."},
+     {n:"Mushroom 65",p:"₹405",d:"v",desc:"Spicy fried mushrooms with curry leaves."},
+     {n:"Paneer Manchurian",p:"₹405",d:"v",desc:"Crispy paneer in Indo-Chinese manchurian sauce."},
+     {n:"Paneer Chilli",p:"₹405",d:"v",desc:"Paneer tossed with bell peppers and chilli sauce."},
+     {n:"Gobhi 65",p:"₹405",d:"v",desc:"Crispy fried cauliflower 65."},
+     {n:"Veg Spring Roll",p:"₹405",d:"v",desc:"Crispy vegetable stuffed rolls."},
+     {n:"Veg Manchurian",p:"₹405",d:"v",desc:"Crispy veg balls in manchurian sauce."},
+     {n:"Gobhi Manchurian",p:"₹405",d:"v",desc:"Cauliflower fritters in manchurian gravy."}
+   ]},
+
+  {id:"vcn",name:"Veg Chinese",sub:"Noodles & Rice",ico:"i-vcn",count:"All at ₹450",kind:"flat",flatP:"₹450",
+   rows:[
+     {n:"Veg Schezwan Noodles",d:"v",desc:"Spicy Schezwan sauce wok noodles with veggies."},
+     {n:"Veg Hakka Noodles",d:"v",desc:"Classic Hakka style stir-fried noodles."},
+     {n:"Veg Chowmein",d:"v",desc:"Stir-fried noodles with crunchy vegetables."},
+     {n:"Veg Fried Rice",d:"v",desc:"Wok fried rice with mixed vegetables."},
+     {n:"Veg Schezwan Fried Rice",d:"v",desc:"Spicy Schezwan fried rice."}
+   ]},
+
+  {id:"nvstar",name:"Non-Veg Starters",sub:"Appetizers",ico:"i-nvstar",count:"15 Items",
+   rows:[
+     {n:"Mix Butter Garlic",v:"Vegetable Mix",p:"₹555",d:"nv",desc:"Non-veg starter mix in butter garlic sauce."},
+     {n:"Butter Garlic Chicken",p:"₹545",d:"nv",desc:"Tender chicken tossed in creamy garlic butter."},
+     {n:"Prawns Shashlik",p:"₹560",d:"nv",desc:"Grilled prawns skewered with vegetables."},
+     {n:"Chicken Shashlik",p:"₹560",d:"nv",desc:"Chicken tikka skewered with peppers and onions."},
+     {n:"Hot & Sweet Prawns",p:"₹550",d:"nv",desc:"Prawns tossed in hot and sweet glaze."},
+     {n:"Hot & Sweet Fish",p:"₹550",d:"nv",desc:"Fish fillets in hot sweet sauce."},
+     {n:"Prawns Butter Garlic",p:"₹550",d:"nv",desc:"Prawns sautéed in rich garlic butter."},
+     {n:"Hot & Sweet Chicken",p:"₹540",d:"nv",desc:"Crispy chicken in sweet chilli sauce."},
+     {n:"Hot Wings",p:"₹530",d:"nv",desc:"Spicy fried chicken wings."},
+     {n:"Prawns 65",p:"₹535",d:"nv",desc:"Crispy fried 65 style prawns."},
+     {n:"Soya Chicken Chilli Fry",p:"₹530",d:"nv",desc:"Chicken tossed with soya chilli paste."},
+     {n:"Chicken Lollypop",p:"₹525",d:"nv",desc:"Crispy fried chicken drumettes."},
+     {n:"Chicken Manchurian",p:"₹530",d:"nv",desc:"Chicken chunks in tangy manchurian sauce."},
+     {n:"Ginger Chicken",p:"₹525",d:"nv",desc:"Chicken tossed with fresh ginger juliennes."},
+     {n:"Chicken 65",p:"₹530",d:"nv",desc:"South-style spicy fried chicken."}
+   ]},
+
+  {id:"nvnd",name:"Non-Veg Noodles",sub:"Noodles",ico:"i-nvnd",count:"4 Items",
+   rows:[
+     {n:"Chicken Schezwan Noodles",p:"₹550",d:"nv",desc:"Wok fried chicken noodles in spicy Schezwan sauce."},
+     {n:"Chicken Hakka Noodles",p:"₹545",d:"nv",desc:"Classic chicken Hakka noodles."},
+     {n:"Chicken Chowmein",p:"₹545",d:"nv",desc:"Stir fried chicken chowmein."},
+     {n:"Chicken American Chopsuey",p:"₹545",d:"nv",desc:"Crispy noodles with sweet tangy chicken gravy."}
+   ]},
+
+  {id:"nvrice",name:"Non-Veg Rice",sub:"Fried Rice",ico:"i-nvrice",count:"10 Items",
+   rows:[
+     {n:"Mixed Schezwan Fried Rice",p:"₹560",d:"nv",desc:"Schezwan rice with chicken, prawns & egg."},
+     {n:"Mixed Fried Rice",p:"₹555",d:"nv",desc:"Fried rice loaded with chicken, prawns & egg."},
+     {n:"Prawns Schezwan Fried Rice",p:"₹550",d:"nv",desc:"Spicy prawns Schezwan rice."},
+     {n:"Fish Schezwan Fried Rice",p:"₹550",d:"nv",desc:"Fish Schezwan fried rice."},
+     {n:"Chicken Schezwan Fried Rice",p:"₹540",d:"nv",desc:"Chicken Schezwan fried rice."},
+     {n:"Fish Fried Rice",p:"₹540",d:"nv",desc:"Fried rice with fish pieces."},
+     {n:"Prawns Fried Rice",p:"₹540",d:"nv",desc:"Fried rice with juicy prawns."},
+     {n:"Chicken Fried Rice",p:"₹540",d:"nv",desc:"Classic chicken fried rice."},
+     {n:"Egg Schezwan Fried Rice",p:"₹450",d:"nv",desc:"Spicy egg Schezwan fried rice."},
+     {n:"Egg Fried Rice",p:"₹445",d:"nv",desc:"Simple egg fried rice."}
+   ]},
+
+  {id:"more",name:"Shawarma & More",sub:"Desserts · Drinks · Wraps",ico:"i-more",count:"Ask Server",kind:"ask",
+   chips:["Shawarma","Wraps","Soups","Desserts","Ice Shakes","Ice Creams","Kulfi","Baklava","Hot & Cold Sips","Bakery Pack"]}
+];
+
+/* ═══════════════════════════════
+   BUILD NAVIGATION PILLS
+═══════════════════════════════ */
+function buildPills(){
+  const nav = document.getElementById('pillNav');
+  D.forEach(c => {
+    const btn = document.createElement('button');
+    btn.className = 'pill-btn';
+    btn.innerHTML = `<svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><use href="#${c.ico}"/></svg> ${c.name}`;
+    btn.addEventListener('click', () => {
+      openCategoryModal(c.id);
+    });
+    nav.appendChild(btn);
+  });
+}
+
+/* ═══════════════════════════════
+   BUILD BENTO GRID
+═══════════════════════════════ */
+function buildBento(){
+  const g=document.getElementById('bento');
+  D.forEach((c,i)=>{
+    const el=document.createElement('div');
+    el.className='card'+(c.feat?' card-feat':'');
+    el.id='card-'+c.id;
+    el.tabIndex=0;el.setAttribute('role','button');
+
+    el.innerHTML=`
+      <div class="card-num">${String(i+1).padStart(2,'0')}</div>
+      <div class="card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><use href="#${c.ico}"/></svg></div>
+      <div class="card-name">${c.name}</div>
+      <div class="card-desc">${c.sub}</div>
+      <div class="card-foot">
+        <span class="card-count">${c.count}</span>
+        <span class="card-btn"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+      </div>`;
+    el.addEventListener('click',()=>openCategoryModal(c.id));
+    el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openCategoryModal(c.id);}});
+    g.appendChild(el);
+  });
+}
+
+/* ═══════════════════════════════
+   MODAL 1: CATEGORY POPUP
+═══════════════════════════════ */
+const OL=document.getElementById('overlay');
+const pIco=document.getElementById('pIco');
+const pTitle=document.getElementById('pTitle');
+const pSub=document.getElementById('pSub');
+const pBody=document.getElementById('pBody');
+document.getElementById('pClose').addEventListener('click',closeCategoryModal);
+OL.addEventListener('click',e=>{if(e.target===OL)closeCategoryModal();});
+
+function openCategoryModal(id){
+  const c=D.find(x=>x.id===id);if(!c)return;
+  pTitle.textContent=c.name;
+  pSub.textContent=c.sub;
+  pIco.innerHTML=`<svg style="width:22px;height:22px" fill="none" viewBox="0 0 24 24" stroke="currentColor"><use href="#${c.ico}"/></svg>`;
+  pBody.innerHTML='';
+
+  if(c.kind==='hero') renderHero(c);
+  else if(c.kind==='flat') renderFlat(c);
+  else if(c.kind==='ask') renderAsk(c);
+  else renderList(c);
+
+  OL.classList.add('on');
+  document.body.style.overflow='hidden';
+}
+
+function closeCategoryModal(){
+  OL.classList.remove('on');
+  document.body.style.overflow='';
+}
+
+function renderHero(c){
+  const it=c.item;
+  pBody.innerHTML=`
+    <div class="irow" style="background:var(--g8);border:1.5px solid var(--g4);padding:16px;" onclick="openDishPopup('${it.name.replace(/'/g, "\\'")}', '${it.price}', '${it.d}', '${(it.note||'Full Portion').replace(/'/g, "\\'")}', '${it.desc.replace(/'/g, "\\'")}')">
+      <span class="ndot"></span>
+      <div style="flex:1">
+        <span class="iname" style="font-size:1.15rem">${it.name}</span>
+        <span class="ivariant">${it.note} · Tap for dish photo & details</span>
+      </div>
+      <span class="iprice" style="font-size:1.2rem">${it.price}</span>
+      <span class="click-hint-icon">➔</span>
+    </div>`;
+}
+
+function renderFlat(c){
+  const rows=c.rows.map(r=>`
+    <div class="irow" onclick="openDishPopup('${r.n.replace(/'/g, "\\'")}', '${c.flatP}', '${r.d}', 'Single Portion', '${(r.desc||'Authentic dish').replace(/'/g, "\\'")}')">
+      ${r.d==='v'?'<span class="vdot"></span>':'<span class="ndot"></span>'}
+      <span class="iname">${r.n}</span>
+      <span class="iprice">${c.flatP}</span>
+      <span class="click-hint-icon">➔</span>
+    </div>`).join('');
+  pBody.innerHTML=`<div style="background:var(--g8);padding:10px 16px;border-radius:10px;margin-bottom:12px;font-size:0.85rem;color:var(--g1);font-weight:600">All Chinese Dishes Flat ${c.flatP} · Tap any dish to view photo space</div><div class="items-grid">${rows}</div>`;
+}
+
+function renderAsk(c){
+  const chips=c.chips.map(ch=>`<span style="background:var(--g7);padding:6px 14px;border-radius:20px;font-size:0.8rem;font-weight:600;color:var(--g1)">${ch}</span>`).join('');
+  pBody.innerHTML=`<div style="text-align:center;padding:30px 10px;">
+    <h3 style="font-family:var(--serif);font-size:1.4rem;color:var(--g1);margin-bottom:12px">Counter Selection</h3>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:16px">${chips}</div>
+    <p style="font-size:0.85rem;color:var(--ink3)">Ask your server for today's fresh availability and prices.</p>
+  </div>`;
+}
+
+function renderList(c){
+  const rows=c.rows.map(r=>`
+    <div class="irow" onclick="openDishPopup('${r.n.replace(/'/g, "\\'")}', '${r.p}', '${r.d}', '${(r.v||'Standard Portion').replace(/'/g, "\\'")}', '${(r.desc||'Signature preparation').replace(/'/g, "\\'")}')">
+      ${r.d==='v'?'<span class="vdot"></span>':'<span class="ndot"></span>'}
+      <div style="flex:1;min-width:0">
+        <span class="iname">${r.n}</span>
+        ${r.v?`<span class="ivariant">${r.v}</span>`:''}
+      </div>
+      <span class="iprice">${r.p}</span>
+      <span class="click-hint-icon">➔</span>
+    </div>`).join('');
+  pBody.innerHTML=`<div class="items-grid">${rows}</div>`;
+}
+
+/* ═══════════════════════════════
+   MODAL 2: DISH DETAIL POPUP WITH PHOTO SPACE
+═══════════════════════════════ */
+const dishOverlay = document.getElementById('dishOverlay');
+const dTitle = document.getElementById('dTitle');
+const dDietBadge = document.getElementById('dDietBadge');
+const dPortionBadge = document.getElementById('dPortionBadge');
+const dDesc = document.getElementById('dDesc');
+const dPrice = document.getElementById('dPrice');
+
+document.getElementById('dishCloseBtn').addEventListener('click', closeDishPopup);
+dishOverlay.addEventListener('click', (e) => { if(e.target === dishOverlay) closeDishPopup(); });
+
+function openDishPopup(name, price, diet, portion, desc){
+  dTitle.textContent = name;
+  dPrice.textContent = price;
+  dPortionBadge.textContent = portion || 'Standard Portion';
+  dDesc.textContent = desc || "Authentic preparation made with traditional spices in Blue Nile's heritage kitchen.";
+
+  if(diet === 'v'){
+    dDietBadge.className = 'dish-type-badge v';
+    dDietBadge.innerHTML = '<span class="vdot"></span> Vegetarian';
+  } else {
+    dDietBadge.className = 'dish-type-badge nv';
+    dDietBadge.innerHTML = '<span class="ndot"></span> Non-Vegetarian';
+  }
+
+  dishOverlay.classList.add('on');
+}
+
+function closeDishPopup(){
+  dishOverlay.classList.remove('on');
+}
+
+/* ESC key handling */
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape'){
+    if(dishOverlay.classList.contains('on')) closeDishPopup();
+    else if(OL.classList.contains('on')) closeCategoryModal();
+  }
+});
+
+/* INIT */
+window.addEventListener('DOMContentLoaded', () => {
+  buildPills();
+  buildBento();
+});
+</script>
+</body>
+</html>
